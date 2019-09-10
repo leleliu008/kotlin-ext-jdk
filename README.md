@@ -1,8 +1,22 @@
 # kotlin-ext-jdk
 
 常用的简化`jdk`的`kotlin`实现
-<br><br>
+<br>
+## 如何引用
+`gradle kotlin dsl`:
+```
+repositories {
+    //https://maven.aliyun.com/mvn/view
+    maven { url = uri("https://maven.aliyun.com/repository/jcenter") }
+}
 
+dependencies {
+    implementation("com.fpliu:kotlin-ext-jdk:1.0.0")
+}
+```
+其他方式请看[jcenter](https://bintray.com/fpliu/newton/kotlin-ext-jdk)
+
+## 文档
 ##### fun BitSet.isFull()
 判断`BitSet`的所有位是否都为`1`
 <br><br>
