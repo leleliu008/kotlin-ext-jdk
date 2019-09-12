@@ -1,8 +1,6 @@
 package com.fpliu.kotlin.util.jdk
 
-import java.io.File
-import java.io.IOException
-import java.io.InputStream
+import java.io.*
 import java.net.URI
 import java.net.URISyntaxException
 import java.text.DecimalFormat
@@ -77,7 +75,7 @@ fun String.isIPv4(): Boolean {
  * 这是Unicode当初在分配codePoint的时候故意这么设计的，虽然字符集与字符编码方案没有必然关系，但是当初分配codePoint是经过充分的考虑的，
  * 不是随意的。也就是说，Unicode第零平面内有65535个codePoint，但是，并不是这些所有的codePoint都被分配上了字符，
  * 有些codePoint是没有对应实际字符的，比如：
- *     区间名称          六进制表示         十进制表示        个数
+ *     区间名称          十六进制表示         十进制表示         个数
  * High Surrogates   0xD800..0xDBFF     55296 ~ 56319     1024个
  * Low Surrogates    0xDC00..0xDFFF     56320 ~ 57343     1024个
  * 因为是判断是否包含有Emoji，实际上，只要遍历此字符串，看看他们的codePoint是不是处于这个区间，如果处于这个区间，说明一定是包含有
@@ -337,8 +335,25 @@ fun File.touch(): Boolean {
 }
 
 //模拟exec命令
-fun exec() {
+fun exec(command: String): String? {
+    var input: BufferedReader? = null
+    try {
+        val p = Runtime.getRuntime().exec(command)
+        input = BufferedReader(InputStreamReader(p.inputStream), 1024)
+        return input.readLine()
+    } catch (ex: IOException) {
+        ex.printStackTrace()
+        return null
+    } finally {
+        if (input != null) {
+            try {
+                input.close()
+            } catch (e: IOException) {
+                e.printStackTrace()
+            }
 
+        }
+    }
 }
 
 //模拟unzip命令

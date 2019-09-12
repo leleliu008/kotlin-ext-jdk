@@ -276,6 +276,11 @@ class Test {
     }
 
     @Test
+    fun test_exec() {
+        assert(exec("pwd") == File("").absolutePath)
+    }
+
+    @Test
     fun test_unzip() {
         val currentDir = File("").absolutePath
         val zipFile = File("$currentDir/test.zip")

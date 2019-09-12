@@ -26,7 +26,7 @@ sourceSets["test"].java.srcDir("src/test/kotlin")
 
 group = "com.fpliu"
 
-version = "1.0.0"
+version = "1.0.1"
 
 val projectName = project.name
 
