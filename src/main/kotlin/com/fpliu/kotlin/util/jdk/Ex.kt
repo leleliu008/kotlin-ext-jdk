@@ -223,7 +223,7 @@ const val BASE_16_CHARACTER_LOWER_TABLE = "0123456789abcdef"
 fun ByteArray.base16Encode(upperCase: Boolean = true): String {
     if (size == 0) return ""
 
-    val result = StringBuilder(this.size * 2)
+    val result = StringBuilder(size shl 1)
     for (byte in this) {
         val intValue = byte.toInt()
         //向右移动4bit，获得高4bit
@@ -242,7 +242,8 @@ fun ByteArray.base16Encode(upperCase: Boolean = true): String {
 }
 
 fun ByteArray.base16Encode2(upperCase: Boolean = true): String {
-    val result = StringBuilder(size * 2)
+    if (size == 0) return ""
+    val result = StringBuilder(size shl 1)
     for (byte in this) { // 使用String的format方法进行转换
         result.append(String.format(if (upperCase) "%02X" else "%02x", byte.toInt() and 0xFF))
     }
@@ -250,17 +251,18 @@ fun ByteArray.base16Encode2(upperCase: Boolean = true): String {
 }
 
 fun String.base16Decode(): ByteArray {
-    val halfInputLength = length / 2
+    val halfInputLength = length shr 1
     val output = ByteArray(halfInputLength)
     for (i in 0 until halfInputLength) {
         //16进制数字转换为10进制数字的过程
-        output[i] = (this[2 * i].hex2dec() * 16 + this[2 * i + 1].hex2dec()).toByte()
+        val j = i shl 1
+        output[i] = ((this[j].hex2dec() shl 4) + this[j + 1].hex2dec()).toByte()
     }
     return output
 }
 
 fun ByteArray.urlEncode(upperCase: Boolean = true): String {
-    if (this.isEmpty()) return ""
+    if (size == 0) return ""
 
     val result = StringBuilder()
     for (byte in this) {
@@ -304,7 +306,7 @@ fun String.urlDecode(): ByteArray {
             val x = this[++i]
             val y = this[++i]
             //16进制数字转换为10进制数字的过程
-            output[outputLength++] = (x.hex2dec() * 16 + y.hex2dec()).toByte()
+            output[outputLength++] = ((x.hex2dec() shl 4) + y.hex2dec()).toByte()
         } else {
             output[outputLength++] = c.toByte()
         }
@@ -351,7 +353,6 @@ fun exec(command: String): String? {
             } catch (e: IOException) {
                 e.printStackTrace()
             }
-
         }
     }
 }
