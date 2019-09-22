@@ -7,7 +7,7 @@ plugins {
 
     //https://github.com/leleliu008/BintrayUploadGradlePlugin
     //https://plugins.gradle.org/plugin/com.fpliu.bintray
-    id("com.fpliu.bintray").version("1.0.7")
+    id("com.fpliu.bintray").version("1.0.14")
 
     //用于上传到jCenter中
     //https://github.com/bintray/gradle-bintray-plugin
@@ -38,6 +38,7 @@ bintrayUploadExtension {
 }
 
 repositories {
+    //https://maven.aliyun.com/mvn/view
     jcenter { url = uri("https://maven.aliyun.com/repository/jcenter") }
     maven { url = uri("https://maven.aliyun.com/repository/public") }
 }
