@@ -111,23 +111,23 @@ https://stackoverflow.com/questions/1734334/mysql-length-vs-char-length
 <br><br>
 
 ##### fun ByteArray.base16Encode(): String
-[base16](http://blog.fpliu.com/it/data/text/encoding/Base16)编码
+[base16](http://blog.fpliu.com/it/data/text/coding/Base16)编码
 <br><br>
 
 ##### fun ByteArray.base16Encode2(): String
-[base16](http://blog.fpliu.com/it/data/text/encoding/Base16)编码的第二种实现
+[base16](http://blog.fpliu.com/it/data/text/coding/Base16)编码的第二种实现
 <br><br>
 
 ##### fun String.base16Decode(): ByteArray
-[base16](http://blog.fpliu.com/it/data/text/encoding/Base16)解码
+[base16](http://blog.fpliu.com/it/data/text/coding/Base16)解码
 <br><br>
 
 ##### fun ByteArray.urlEncode(): String
-[URL](http://blog.fpliu.com/it/data/text/encoding/URL)编码
+[URL](http://blog.fpliu.com/it/data/text/coding/URL)编码
 <br><br>
 
 ##### fun String.urlDecode(): ByteArray
-[URL](http://blog.fpliu.com/it/data/text/encoding/URL)解码
+[URL](http://blog.fpliu.com/it/data/text/coding/URL)解码
 <br><br>
 
 ##### fun File.mkdirP(): Boolean
